@@ -9,7 +9,7 @@ import java.util.List;
 
 @Mapper
 public interface BookDao extends BaseMapper<BookEntity> {
-    BookEntity getByName(@Param("name")String name);
+    BookEntity selectByName(@Param("name")String name);
     List<BookEntity> getByPrice(@Param("price")double price);
     void addBook(@Param("book")BookEntity book);
 }

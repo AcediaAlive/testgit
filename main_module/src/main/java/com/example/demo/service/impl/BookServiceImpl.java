@@ -14,7 +14,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public BookEntity findBookByName(String name) {
-        return bookDao.getByName(name);
+        return bookDao.selectByName(name);
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.BookEntity;
 import com.example.demo.service.BookService;
+import com.example.demo.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/home")
+//@RequestMapping("/home")
 @RequiredArgsConstructor
 public class SthController {
     private final BookService bookService;
@@ -17,6 +18,11 @@ public class SthController {
     @RequestMapping("/test")
     public String test(@RequestParam(required = false, defaultValue = "A") String name){
         return name+" Hello World!!!";
+    }
+
+    @GetMapping("/get-token")
+    public String getToken(@RequestParam String code) {
+        return JwtUtil.generateJwt(code);
     }
 
     @PostMapping("/add")

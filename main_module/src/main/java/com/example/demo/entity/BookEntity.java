@@ -1,5 +1,7 @@
 package com.example.demo.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Builder;
 import lombok.Data;
@@ -7,7 +9,8 @@ import lombok.Data;
 @Data
 @Builder
 @TableName("book")
-public class BookEntity {
+public class BookEntity extends BaseEntity {
+    @TableId(type = IdType.AUTO)
     private String id;
     private String name;
     private String author;
