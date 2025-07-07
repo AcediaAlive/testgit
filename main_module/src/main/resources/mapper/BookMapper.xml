@@ -10,6 +10,6 @@
         SELECT b.* FROM book b WHERE b.price &lt;= #{price}
     </select>
     <insert id="addBook" parameterType="com.example.demo.entity.BookEntity">
-        INSERT INTO book VALUES (null,#{book.name},#{book.author},#{book.publisher},#{book.price},#{book.quantity})
+        INSERT INTO book VALUES (null,#{book.name},#{book.author},#{book.publisher},#{book.price},#{book.quantity},#{book.creator},null,#{book.updater},#{book.updateTime})
     </insert>
 </mapper>

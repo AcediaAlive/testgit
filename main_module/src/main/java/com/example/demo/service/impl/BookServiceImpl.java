@@ -1,5 +1,7 @@
 package com.example.demo.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.demo.dao.BookDao;
 import com.example.demo.entity.BookEntity;
 import com.example.demo.service.BookService;
@@ -24,6 +26,6 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void addBook(BookEntity book) {
-        bookDao.addBook(book);
+        bookDao.insert(book);
     }
 }

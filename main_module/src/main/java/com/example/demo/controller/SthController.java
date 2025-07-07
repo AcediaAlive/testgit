@@ -2,7 +2,6 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.BookEntity;
 import com.example.demo.service.BookService;
-import com.example.demo.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,13 +19,9 @@ public class SthController {
         return name+" Hello World!!!";
     }
 
-    @GetMapping("/get-token")
-    public String getToken(@RequestParam String code) {
-        return JwtUtil.generateJwt(code);
-    }
-
     @PostMapping("/add")
     public BookEntity addBook(@RequestBody BookEntity book){
+        System.out.println(book);
         bookService.addBook(book);
         return book;
     }

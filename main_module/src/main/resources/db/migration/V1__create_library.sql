@@ -14,8 +14,6 @@ CREATE TABLE IF NOT EXISTS book (
 CREATE TABLE IF NOT EXISTS user (
     id           varchar(32) not null comment '主键' primary key,
     password     varchar(32) not null,
-    creator      varchar(32)                        not null,
     create_time  datetime default CURRENT_TIMESTAMP not null,
-    updater      varchar(32) null,
     update_time  datetime null
     )ENGINE=InnoDB DEFAULT CHARSET=utf8;

@@ -33,10 +33,10 @@ public class JwtFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         String requestURL = request.getRequestURL().toString();
-//        if (requestURL.contains("/get-token")){
-//            filterChain.doFilter(request, response);
-//            return;
-//        }
+        if (requestURL.contains("/auth/get-token") || requestURL.contains("/test")){
+            filterChain.doFilter(request, response);
+            return;
+        }
         String token = request.getHeader("token");
         if (!StringUtils.hasLength(token)) {
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Require JWT token");
@@ -44,23 +44,20 @@ public class JwtFilter implements Filter {
         }
         try{
             Claims claims = JwtUtil.parseJWT(token);
-            System.out.println(claims);
+//            System.out.println(claims);
+            if (SecurityContextHolder.getContext().getAuthentication() == null) {
+                UserDetails userDetails = this.customUserDetailsService.loadUserByUsername(claims.get("id",String.class));
+                if (jwtUtil.validateAccessToken(token, userDetails.getUsername())) {
+                    UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
+                            new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                    usernamePasswordAuthenticationToken
+                            .setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                    SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+                }
+            }
         }catch (Exception e){
             e.printStackTrace();
             return;
-        }
-        if (SecurityContextHolder.getContext().getAuthentication() == null) {
-
-            UserDetails userDetails = this.customUserDetailsService.loadUserByUsername(token);
-
-            if (jwtUtil.validateAccessToken(token, userDetails.getUsername())) {
-                UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
-                        new UsernamePasswordAuthenticationToken(
-                                userDetails, null, userDetails.getAuthorities());
-                usernamePasswordAuthenticationToken
-                        .setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
-            }
         }
         filterChain.doFilter(request, response);
     }
