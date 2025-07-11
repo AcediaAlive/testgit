@@ -11,5 +11,5 @@ import java.util.List;
 public interface BookDao extends BaseMapper<BookEntity> {
     BookEntity selectByName(@Param("name")String name);
     List<BookEntity> getByPrice(@Param("price")double price);
-    void addBook(@Param("book")BookEntity book);
+//    void addBook(@Param("book")BookEntity book);
 }

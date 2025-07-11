@@ -1,8 +1,12 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.BookEntity;
+import com.example.demo.entity.UserEntity;
 import com.example.demo.service.BookService;
+import com.example.demo.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,15 +17,25 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SthController {
     private final BookService bookService;
+    private final UserService userService;
+
+    @Autowired
+    private RedisTemplate<String, Object> redisTemplate;
 
     @RequestMapping("/test")
     public String test(@RequestParam(required = false, defaultValue = "A") String name){
         return name+" Hello World!!!";
     }
 
-    @PostMapping("/add")
+    @PostMapping("/addU")
+    public UserEntity addUser(@RequestBody UserEntity user){
+        userService.addUser(user);
+//        redisTemplate.opsForValue().set(user.getUsername(),user.getPassword());
+        return user;
+    }
+
+    @PostMapping("/addB")
     public BookEntity addBook(@RequestBody BookEntity book){
-        System.out.println(book);
         bookService.addBook(book);
         return book;
     }

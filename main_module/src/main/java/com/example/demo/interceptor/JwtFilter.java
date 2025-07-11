@@ -33,7 +33,7 @@ public class JwtFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         String requestURL = request.getRequestURL().toString();
-        if (requestURL.contains("/auth/get-token") || requestURL.contains("/test")){
+        if (requestURL.contains("/auth/get-token") || requestURL.contains("/addU")|| requestURL.contains("/test")){
             filterChain.doFilter(request, response);
             return;
         }
@@ -46,7 +46,7 @@ public class JwtFilter implements Filter {
             Claims claims = JwtUtil.parseJWT(token);
 //            System.out.println(claims);
             if (SecurityContextHolder.getContext().getAuthentication() == null) {
-                UserDetails userDetails = this.customUserDetailsService.loadUserByUsername(claims.get("id",String.class));
+                UserDetails userDetails = this.customUserDetailsService.loadUserByUsername(claims.get("id", String.class));
                 if (jwtUtil.validateAccessToken(token, userDetails.getUsername())) {
                     UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
                             new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());

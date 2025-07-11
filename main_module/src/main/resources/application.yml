@@ -1,15 +1,25 @@
 server:
   port: 8081
 Spring:
+  application:
+    name: test-server
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/library
     username: root
     password: yui33
+  redis:
+    host: localhost
+    database: 0
+    port: 6379
   flyway:
     enabled: true
     locations: [ "classpath:/db/migration" ]
     out-of-order: false
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.example.demo.entity

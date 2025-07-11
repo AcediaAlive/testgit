@@ -4,4 +4,5 @@ import com.example.demo.entity.UserEntity;
 
 public interface UserService {
     boolean authUser(String id, String password);
+    void addUser(UserEntity user);
 }

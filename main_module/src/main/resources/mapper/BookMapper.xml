@@ -9,7 +9,7 @@
     <select id="getByPrice" resultType="com.example.demo.entity.BookEntity" parameterType="double">
         SELECT b.* FROM book b WHERE b.price &lt;= #{price}
     </select>
-    <insert id="addBook" parameterType="com.example.demo.entity.BookEntity">
-        INSERT INTO book VALUES (null,#{book.name},#{book.author},#{book.publisher},#{book.price},#{book.quantity},#{book.creator},null,#{book.updater},#{book.updateTime})
-    </insert>
+<!--    <insert id="addBook" parameterType="com.example.demo.entity.BookEntity">-->
+<!--        INSERT INTO book VALUES (null,#{book.name},#{book.author},#{book.publisher},#{book.price},#{book.quantity},#{book.creator},null,#{book.updater},#{book.updateTime})-->
+<!--    </insert>-->
 </mapper>

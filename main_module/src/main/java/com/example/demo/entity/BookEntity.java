@@ -11,7 +11,8 @@ import lombok.Data;
 @TableName("book")
 public class BookEntity extends BaseEntity {
     @TableId(type = IdType.AUTO)
-    private String id;
+    private Long id;
+
     private String name;
     private String author;
     private String publisher;
