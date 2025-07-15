@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-//@RequestMapping("/home")
+@RequestMapping("/home")
 @RequiredArgsConstructor
 public class SthController {
     private final BookService bookService;

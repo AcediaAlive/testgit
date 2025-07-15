@@ -13,6 +13,14 @@ Spring:
         locator:
           enabled: true
       routes:
+         服务的ID，唯一即可一般与微服务的service name一致
+        - id: main_module
+          # lb表示负载均衡
+          uri: lb://test-server
+          predicates:
+            # 路径匹配,所有user开头的请求都转发到localhost:8080
+            - Path=/home/**
+
         - id: analysis
           uri: https://mawrgorshin.com
           predicates:
