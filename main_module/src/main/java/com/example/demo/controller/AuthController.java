@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.concurrent.TimeUnit;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/auth")
@@ -20,12 +22,14 @@ public class AuthController {
 
     @GetMapping("/get-token")
     public String getToken(@RequestParam String id, @RequestParam String password) {
+        System.out.println("getToken");
         if(redisTemplate.hasKey(id)){
             return (String)redisTemplate.opsForValue().get(id);
         }else{
             if(userService.authUser(id, password)){
                 String token= JwtUtil.generateJwt(id);
                 redisTemplate.opsForValue().set(id,token);
+                redisTemplate.expire(id,20, TimeUnit.MINUTES);
                 return token;
             }else{
                 return "Invalid username or password";

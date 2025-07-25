@@ -1,7 +1,7 @@
-package com.example.demo.config;
+package com.example.demo2.config;
 
-import com.example.demo.interceptor.JwtFilter;
-import com.example.demo.security.LoginSecurityAdapter;
+import com.example.demo2.interceptor.JwtFilter;
+import com.example.demo2.security.LoginSecurityAdapter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,8 +1,8 @@
-package com.example.demo.service.impl;
+package com.example.demo2.service.impl;
 
-import com.example.demo.dao.UserDao;
-import com.example.demo.entity.UserEntity;
-import com.example.demo.service.CustomUserDetailsService;
+import com.example.demo2.dao.UserDao;
+import com.example.demo2.entity.UserEntity;
+import com.example.demo2.service.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

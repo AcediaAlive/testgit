@@ -1,6 +1,6 @@
-package com.example.demo.interceptor;
+package com.example.demo2.interceptor;
 
-import com.example.demo.util.JwtUtil;
+import com.example.demo2.util.JwtUtil;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

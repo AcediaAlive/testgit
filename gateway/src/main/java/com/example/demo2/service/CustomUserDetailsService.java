@@ -1,6 +1,6 @@
-package com.example.demo.service;
+package com.example.demo2.service;
 
-import com.example.demo.entity.UserEntity;
+import com.example.demo2.entity.UserEntity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 public interface CustomUserDetailsService extends UserDetailsService {
