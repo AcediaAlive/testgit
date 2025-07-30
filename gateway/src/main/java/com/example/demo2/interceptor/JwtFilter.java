@@ -1,7 +1,10 @@
 package com.example.demo2.interceptor;
 
+import com.example.demo2.service.CustomUserDetailsService;
 import com.example.demo2.util.JwtUtil;
 import io.jsonwebtoken.Claims;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,9 +20,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Component
+@RequiredArgsConstructor
 public class JwtFilter implements Filter {
-    @Autowired
-    private UserDetailsService customUserDetailsService;
+    private final UserDetailsService customUserDetailsService;
     @Autowired
     private JwtUtil jwtUtil;
 

@@ -25,12 +25,12 @@ Spring:
         locator:
           enabled: true
       routes:
-        - id: main_module
-          uri: lb://test-server
-          predicates:
-            - Path=/server/**
-          filters:
-            - StripPrefix=1
+#        - id: main_module
+#          uri: lb://test-server
+#          predicates:
+#            - Path=/server/**
+#          filters:
+#            - StripPrefix=1
 
         - id: con_module
           uri: lb://consumer

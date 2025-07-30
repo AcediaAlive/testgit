@@ -36,4 +36,8 @@ public class AuthController {
             }
         }
     }
+    @GetMapping("/user")
+    public boolean authUser(@RequestParam String id, @RequestParam String password) {
+        return userService.authUser(id, password);
+    }
 }

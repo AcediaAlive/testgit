@@ -6,6 +6,7 @@ import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.example.demo.entity.BookEntity;
 import com.example.demo.entity.UserEntity;
 import com.example.demo.service.BookService;
+import com.example.demo.service.CustomUserDetailsService;
 import com.example.demo.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,8 @@ import java.util.List;
 public class SthController {
     private final BookService bookService;
     private final UserService userService;
+    @Autowired
+    private CustomUserDetailsService customUserDetailsService;
 
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
@@ -72,4 +75,14 @@ public class SthController {
         List<BookEntity> lb=bookService.findBookByPrice(price);
         return ResponseEntity.ok(lb);
     }
+
+    @GetMapping("/createUD")
+    public void createUserByDetails(@RequestBody UserEntity newUser){
+        customUserDetailsService.createUserDetails(newUser);
+    }
+    @GetMapping("/loadUD")
+    public UserEntity getUserDetailsByUsername(@RequestParam String userName){
+        return customUserDetailsService.getUserDetailsByUsername(userName);
+    }
+
 }

@@ -1,8 +1,13 @@
 package com.example.demo2.service;
 
-import com.example.demo2.entity.UserEntity;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+@Service
+@FeignClient(value = "test-server",contextId = "userClient")
 public interface UserService {
-    boolean authUser(String id, String password);
-    void addUser(UserEntity user);
+    @GetMapping("/auth/user")
+    boolean authUser(@RequestParam String id, @RequestParam String password);
 }
