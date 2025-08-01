@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean authUser(String id, String password) {
 //        用数据库
-        String password2=userDao.selectById(id).getPassword();
+        String password2 = userDao.selectById(id).getPassword();
         return password.equals(password2);
 
 //        用redis

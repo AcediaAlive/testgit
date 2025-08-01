@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
     private final UserDao userDao;
     @Override
-    public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
-        return userDao.selectById(id);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return userDao.selectById(username);
     }
     @Override
     public void createUserDetails(UserEntity newUser) {

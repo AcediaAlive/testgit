@@ -1,16 +1,11 @@
 server:
   port: 8082
-Spring:
+spring:
 #  main:
 #    web-application-type: reactive
 #    allow-bean-definition-overriding: true
   application:
     name: gateway
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/library
-    username: root
-    password: yui33
   redis:
     host: localhost
     database: 0
@@ -21,30 +16,30 @@ Spring:
         server-addr: 39.96.177.174:8848
     #        server-addr: 127.0.0.1:8848
     gateway:
-      discovery:
-        locator:
-          enabled: true
+#      discovery:
+#        locator:
+#          enabled: true
       routes:
-#        - id: main_module
-#          uri: lb://test-server
-#          predicates:
-#            - Path=/server/**
+        - id: main_module
+          uri: lb://test-server
+          predicates:
+            - Path=/home/**,/auth/**
 #          filters:
 #            - StripPrefix=1
 
-        - id: con_module
-          uri: lb://consumer
-          predicates:
-            - Path=/con/**
-          filters:
-            - StripPrefix=1
+#        - id: con_module
+#          uri: lb://consumer
+#          predicates:
+#            - Path=/con/**
+#          filters:
+#            - StripPrefix=1
 
-        - id: analysis
-          uri: https://mawrgorshin.com
-          predicates:
-            - Path=/ocean/**
-          filters:
-            - StripPrefix=1
+#        - id: analysis
+#          uri: https://mawrgorshin.com
+#          predicates:
+#            - Path=/ocean/**
+#          filters:
+#            - StripPrefix=1
 #        - id: nacos-provid
 #          uri: lb://test-server
 #          predicates:
